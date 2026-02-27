@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  background-color: #141414;
+  min-height: 100vh;
+  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.app__content {
+  padding-top: 20px;
+  padding-bottom: 50px;
+  position: relative;
+  z-index: 5;
+  background-color: #141414;
+}
+
+.app__footer {
+  padding: 50px 4%;
+  background-color: #141414;
+  border-top: 1px solid #2f2f2f;
+}
+
+.app__footerContent {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  color: #808080;
+  font-size: 13px;
+}
+
+.app__footerContent p {
+  margin: 5px 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6a6a6a;
+}
+
+/* Selection styling */
+::selection {
+  background: #e50914;
+  color: white;
+}
+
+/* Focus styling */
+*:focus {
+  outline: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #141414;
+  color: white;
+}

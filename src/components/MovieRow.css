@@ -1,0 +1,151 @@
+.movieRow {
+  color: white;
+  margin-left: 4%;
+  margin-bottom: 30px;
+}
+
+.movieRow__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.movieRow__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.movieRow__posters {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.movieRow__posters::-webkit-scrollbar {
+  display: none;
+}
+
+.movieRow__posterContainer {
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.movieRow__posterContainer:hover {
+  transform: scale(1.08);
+  z-index: 10;
+}
+
+.movieRow__poster {
+  height: 200px;
+  width: 133px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.movieRow__posterContainer:hover .movieRow__poster {
+  border-radius: 4px 4px 0 0;
+}
+
+.movieRow__posterInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  padding: 40px 10px 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 0 0 4px 4px;
+}
+
+.movieRow__posterContainer:hover .movieRow__posterInfo {
+  opacity: 1;
+}
+
+.movieRow__posterTitle {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movieRow__posterYear {
+  font-size: 11px;
+  color: #a3a3a3;
+  margin: 5px 0 0;
+}
+
+.movieRow__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20, 20, 20, 0.7);
+  border: none;
+  color: white;
+  font-size: 40px;
+  width: 50px;
+  height: 100%;
+  cursor: pointer;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movieRow__container:hover .movieRow__arrow {
+  opacity: 1;
+}
+
+.movieRow__arrow:hover {
+  background: rgba(20, 20, 20, 0.9);
+}
+
+.movieRow__arrow--left {
+  left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.movieRow__arrow--right {
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.movieRow__loading {
+  padding: 20px 0;
+  color: #a3a3a3;
+}
+
+@media (min-width: 1200px) {
+  .movieRow__poster {
+    height: 250px;
+    width: 166px;
+  }
+}
+
+@media (max-width: 768px) {
+  .movieRow__poster {
+    height: 150px;
+    width: 100px;
+  }
+
+  .movieRow__title {
+    font-size: 1.2rem;
+  }
+
+  .movieRow__arrow {
+    display: none;
+  }
+}
