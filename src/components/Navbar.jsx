@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ user, onLogout }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +33,27 @@ const Navbar = () => {
       <div className="navbar__right">
         <span className="navbar__icon">🔍</span>
         <span className="navbar__icon">🔔</span>
-        <img
-          className="navbar__avatar"
-          src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-          alt="User Avatar"
-        />
+        <div className="navbar__profile">
+          <span className="navbar__username">{user?.username}</span>
+          <div 
+            className="navbar__avatar-container"
+            onClick={() => setShowDropdown(!showDropdown)}
+          >
+            <img
+              className="navbar__avatar"
+              src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+              alt="User Avatar"
+            />
+            <span className="navbar__dropdown-arrow">▼</span>
+          </div>
+          {showDropdown && (
+            <div className="navbar__dropdown">
+              <button className="navbar__logout" onClick={onLogout}>
+                Sign out of Kodflix
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

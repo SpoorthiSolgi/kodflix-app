@@ -1,36 +1,71 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import MovieRow from './components/MovieRow';
-import {
-  fetchPopularMovies,
-  fetchTrendingMovies,
-  fetchTopRatedMovies,
-  fetchActionMovies,
-  fetchComedyMovies,
-  fetchHorrorMovies,
-} from './services/tmdb';
+import React, { useState, useEffect } from 'react';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import { isAuthenticated } from './services/auth';
 import './App.css';
 
 function App() {
+  const [currentView, setCurrentView] = useState('signup');
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check if user is already authenticated
+    if (isAuthenticated()) {
+      setAuthenticated(true);
+      setCurrentView('dashboard');
+    }
+  }, []);
+
+  const handleSignupSuccess = () => {
+    setCurrentView('login');
+  };
+
+  const handleLoginSuccess = () => {
+    setAuthenticated(true);
+    setCurrentView('dashboard');
+  };
+
+  const handleSwitchToLogin = () => {
+    setCurrentView('login');
+  };
+
+  const handleSwitchToSignup = () => {
+    setCurrentView('signup');
+  };
+
+  // Render based on current view
+  const renderView = () => {
+    switch (currentView) {
+      case 'signup':
+        return (
+          <Signup
+            onSwitchToLogin={handleSwitchToLogin}
+            onSignupSuccess={handleSignupSuccess}
+          />
+        );
+      case 'login':
+        return (
+          <Login
+            onSwitchToSignup={handleSwitchToSignup}
+            onLoginSuccess={handleLoginSuccess}
+          />
+        );
+      case 'dashboard':
+        return <Dashboard />;
+      default:
+        return (
+          <Signup
+            onSwitchToLogin={handleSwitchToLogin}
+            onSignupSuccess={handleSignupSuccess}
+          />
+        );
+    }
+  };
+
   return (
     <div className="app">
-      <Navbar />
-      <Hero />
-      <div className="app__content">
-        <MovieRow title="Popular on Netflix" fetchMovies={fetchPopularMovies} />
-        <MovieRow title="Trending Now" fetchMovies={fetchTrendingMovies} />
-        <MovieRow title="Top Rated" fetchMovies={fetchTopRatedMovies} />
-        <MovieRow title="Action Movies" fetchMovies={fetchActionMovies} />
-        <MovieRow title="Comedy Movies" fetchMovies={fetchComedyMovies} />
-        <MovieRow title="Horror Movies" fetchMovies={fetchHorrorMovies} />
-      </div>
-      <footer className="app__footer">
-        <div className="app__footerContent">
-          <p>&copy; 2024 Kodflix. All rights reserved.</p>
-          <p>Data provided by OMDb API</p>
-        </div>
-      </footer>
+      {renderView()}
     </div>
   );
 }
