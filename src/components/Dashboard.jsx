@@ -59,7 +59,7 @@ const Dashboard = ({ onLogout }) => {
       <Navbar user={user} onLogout={handleLogout} />
       <Hero />
       <div className="dashboard__content">
-        <MovieRow title="Popular on Netflix" fetchMovies={fetchPopularMovies} />
+        <MovieRow title="Popular on Kodflix" fetchMovies={fetchPopularMovies} />
         <MovieRow title="Trending Now" fetchMovies={fetchTrendingMovies} />
         <MovieRow title="Top Rated" fetchMovies={fetchTopRatedMovies} />
         <MovieRow title="Action Movies" fetchMovies={fetchActionMovies} />
