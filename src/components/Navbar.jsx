@@ -17,11 +17,7 @@ const Navbar = ({ user, onLogout }) => {
   return (
     <nav className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__left">
-        <img
-          className="navbar__logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-          alt="Kodflix Logo"
-        />
+        <div className="navbar__logo-text">KODFLIX</div>
         <ul className="navbar__links">
           <li className="navbar__link navbar__link--active">Home</li>
           <li className="navbar__link">TV Shows</li>

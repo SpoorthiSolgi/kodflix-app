@@ -29,6 +29,15 @@
   cursor: pointer;
 }
 
+.navbar__logo-text {
+  color: #e50914;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  cursor: pointer;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .navbar__links {
   display: flex;
   list-style: none;

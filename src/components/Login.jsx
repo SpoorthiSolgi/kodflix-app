@@ -55,10 +55,7 @@ const Login = ({ onSwitchToSignup, onLoginSuccess }) => {
 
       <div className="auth-content">
         <div className="auth-logo">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-            alt="Kodflix"
-          />
+          <div className="auth-logo-text">KODFLIX</div>
         </div>
 
         <div className="auth-form-container">
