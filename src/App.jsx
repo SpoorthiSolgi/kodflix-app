@@ -34,6 +34,11 @@ function App() {
     setCurrentView('signup');
   };
 
+  const handleLogout = () => {
+    setAuthenticated(false);
+    setCurrentView('login');
+  };
+
   // Render based on current view
   const renderView = () => {
     switch (currentView) {
@@ -52,7 +57,7 @@ function App() {
           />
         );
       case 'dashboard':
-        return <Dashboard />;
+        return <Dashboard onLogout={handleLogout} />;
       default:
         return (
           <Signup

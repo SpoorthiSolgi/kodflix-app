@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { logout, getCurrentUser, verifyToken } from '../services/auth';
 import Navbar from './Navbar';
 import Hero from './Hero';
@@ -14,8 +13,7 @@ import {
 } from '../services/tmdb';
 import './Dashboard.css';
 
-const Dashboard = () => {
-  const navigate = useNavigate();
+const Dashboard = ({ onLogout }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,14 +22,14 @@ const Dashboard = () => {
       const currentUser = getCurrentUser();
       
       if (!currentUser) {
-        navigate('/login');
+        onLogout?.();
         return;
       }
 
       // Verify token is still valid
       const result = await verifyToken();
       if (!result.success) {
-        navigate('/login');
+        onLogout?.();
         return;
       }
 
@@ -40,11 +38,11 @@ const Dashboard = () => {
     };
 
     checkAuth();
-  }, [navigate]);
+  }, [onLogout]);
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    onLogout?.();
   };
 
   if (loading) {
