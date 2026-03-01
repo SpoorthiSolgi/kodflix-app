@@ -6,7 +6,7 @@ import { isAuthenticated } from './services/auth';
 import './App.css';
 
 function App() {
-  const [currentView, setCurrentView] = useState('signup');
+  const [currentView, setCurrentView] = useState('login');
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {

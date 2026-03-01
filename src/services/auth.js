@@ -8,7 +8,8 @@ const authApi = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  timeout: 10000 // 10 second timeout
 });
 
 // Add token to requests if it exists
@@ -26,6 +27,18 @@ export const register = async (userData) => {
     const response = await authApi.post('/register', userData);
     return { success: true, data: response.data };
   } catch (error) {
+    if (error.code === 'ECONNABORTED') {
+      return {
+        success: false,
+        error: 'Request timeout. Please check your connection and try again.'
+      };
+    }
+    if (!error.response) {
+      return {
+        success: false,
+        error: 'Network error. Please check if the server is running.'
+      };
+    }
     return {
       success: false,
       error: error.response?.data?.message || 'Registration failed'
@@ -43,6 +56,18 @@ export const login = async (credentials) => {
     }
     return { success: true, data: response.data };
   } catch (error) {
+    if (error.code === 'ECONNABORTED') {
+      return {
+        success: false,
+        error: 'Request timeout. Please check your connection and try again.'
+      };
+    }
+    if (!error.response) {
+      return {
+        success: false,
+        error: 'Network error. Please check if the server is running.'
+      };
+    }
     return {
       success: false,
       error: error.response?.data?.message || 'Login failed'
